@@ -42,7 +42,7 @@ class InfoCharacterViewController: UIViewController {
     }()
     
     private lazy var characterTableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: infoCellIdentifier)
         tableView.backgroundColor = UIColor(named: "backgroundColor")
@@ -76,9 +76,9 @@ class InfoCharacterViewController: UIViewController {
         NSLayoutConstraint.activate(
             [
                 characterTableView.topAnchor.constraint(equalTo: characterStackView.bottomAnchor, constant: 20),
-                characterTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-                characterTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                characterTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
+                characterTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                characterTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                characterTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ]
         )
     }
@@ -117,11 +117,11 @@ class InfoCharacterViewController: UIViewController {
 
 extension InfoCharacterViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        episode.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : character?.episode.count ?? 0
+       1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -130,8 +130,8 @@ extension InfoCharacterViewController: UITableViewDelegate, UITableViewDataSourc
         cell.backgroundColor = UIColor(named: "cellColor")
         if indexPath.section == 0 {
             content.text = character?.description
-        } else if indexPath.section == 1 && indexPath.row < episode.count {
-            content.text = episode[indexPath.row].description
+        } else if indexPath.section > 0 {
+            content.text = episode[indexPath.section].description
         }
 
         content.textProperties.color = .white
@@ -143,7 +143,13 @@ extension InfoCharacterViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? "Info" : "Episode"
+        if section == 0 {
+            return "Info"
+        } else if section == 1 {
+            return "Episode"
+        }
+        
+        return nil
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -152,6 +158,14 @@ extension InfoCharacterViewController: UITableViewDelegate, UITableViewDataSourc
             headerView.textLabel?.font = .boldSystemFont(ofSize: 15)
         }
     }
-
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+            return 8
+        }
+        
+        func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+            let view = UIView()
+            return view
+        }
     
 }

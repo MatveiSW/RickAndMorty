@@ -14,3 +14,6 @@
 # Скрины приложения: 
 
 ![HomeVC](https://github.com/MatveiSW/RickAndMorty/blob/main/CharactersVC.png) 
+
+
+![HomeVC](https://github.com/MatveiSW/RickAndMorty/blob/main/InfoVC.png) 

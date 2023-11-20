@@ -10,3 +10,7 @@
 - URLSession, Kingfisher
 - GCD
 - MVC
+
+# Скрины приложения: 
+
+![HomeVC](https://github.com/MatveiSW/FoodOrder/blob/s/HomeVC.png) 

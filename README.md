@@ -13,4 +13,4 @@
 
 # Скрины приложения: 
 
-![HomeVC](https://github.com/MatveiSW/FoodOrder/blob/s/HomeVC.png) 
+![HomeVC](https://github.com/MatveiSW/FoodOrder/blob/s/CharactersVC.png) 
